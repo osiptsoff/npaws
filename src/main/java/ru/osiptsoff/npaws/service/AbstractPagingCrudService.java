@@ -25,11 +25,11 @@ public abstract class AbstractPagingCrudService<T> extends AbstractCrudService<T
     }
 
     @Override
+    @Transactional
     public PageDto<T> findPage(PageRequestDto pageRequestDto) {
         return findPage(pageRequestDto, p -> getPsRepository().findAll(p));
     }
 
-    @Transactional
     protected PageDto<T> findPage(PageRequestDto pageRequestDto, Function<PageRequest, Page<T>> func) {
         Page<T> page;
         var pageRequest = PageRequest.of(pageRequestDto.getPageNumber(), pageRequestDto.getPageSize());
