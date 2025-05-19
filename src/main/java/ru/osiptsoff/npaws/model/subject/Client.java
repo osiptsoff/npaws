@@ -1,0 +1,20 @@
+package ru.osiptsoff.npaws.model.subject;
+
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Entity
+@Table(schema = "subject", name = "client_info")
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class Client extends Person {
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    private List<Patient> patients;
+}
