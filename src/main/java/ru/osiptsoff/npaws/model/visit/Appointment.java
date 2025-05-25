@@ -5,6 +5,8 @@ import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -33,6 +35,10 @@ public class Appointment {
 
     @Column(name = "datetime")
     private LocalDateTime dateTime;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private AppointmentStatus appointmentStatus;
 
     @OneToOne(mappedBy = "owningAppointment", fetch = FetchType.EAGER)
     private Protocol protocol;

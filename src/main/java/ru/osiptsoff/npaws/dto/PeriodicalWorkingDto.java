@@ -43,7 +43,7 @@ public class PeriodicalWorkingDto extends Dto<PeriodicalWorkingDay> {
         }
         setDayStart(entity.getDayStart());
         setDayDuratuinHours(entity.getDayDurationHours());
-        setDayOfWeek(entity.getDayOfWeek().name());
+        setDayOfWeek(entity.getDayOfWeek().getName());
 
         return this;
     }

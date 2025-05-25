@@ -45,12 +45,12 @@ public class EmployeeDto extends Dto<Employee> {
             .map(c -> new ContactDto().fillByEntity(c))
             .toList()
         );
-        setEducation(entity.getEducation().name());
+        setEducation(entity.getEducation().getName());
         setId(entity.getId());
         setScheduleId(entity.getId());
         setInstitution(entity.getInstitution());
         setName(entity.getName());
-        setPosition(entity.getPosition().name());
+        setPosition(entity.getPosition().getName());
 
         return this;
     }

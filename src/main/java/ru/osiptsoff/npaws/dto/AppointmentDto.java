@@ -8,6 +8,7 @@ import lombok.EqualsAndHashCode;
 import ru.osiptsoff.npaws.model.subject.Employee;
 import ru.osiptsoff.npaws.model.subject.Patient;
 import ru.osiptsoff.npaws.model.visit.Appointment;
+import ru.osiptsoff.npaws.model.visit.AppointmentStatus;
 import ru.osiptsoff.npaws.model.visit.Protocol;
 
 @Data
@@ -17,6 +18,7 @@ public class AppointmentDto extends Dto<Appointment> {
     private UUID employeeId;
     private UUID patientId;
     private LocalDateTime dateTime;
+    private String status;
     private UUID appointedAppointmentId;
     private String diagnosis;
     private String comment;
@@ -32,6 +34,7 @@ public class AppointmentDto extends Dto<Appointment> {
         if (getEmployeeId() != null) {
             appointment.setEmployee(employee);
         }
+        appointment.setAppointmentStatus(AppointmentStatus.valueOf(getStatus()));
         appointment.setId(getId());
         if (getPatientId() != null) {
             appointment.setPatient(patient);
@@ -61,6 +64,7 @@ public class AppointmentDto extends Dto<Appointment> {
         if (entity.getEmployee() != null) {
             setEmployeeId(entity.getEmployee().getId());
         }
+        setStatus(entity.getAppointmentStatus().getName());
         setId(entity.getId());
         if (entity.getPatient() != null) {
             setPatientId(entity.getPatient().getId());
