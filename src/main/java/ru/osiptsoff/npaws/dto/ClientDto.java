@@ -12,7 +12,6 @@ import ru.osiptsoff.npaws.model.subject.Client;
 @EqualsAndHashCode(callSuper = false)
 public class ClientDto extends Dto<Client> {
     private UUID id;
-    private UUID scheduleId;
     private String name;
     private List<ContactDto> contacts = new ArrayList<>();
     private List<PatientDto> patients = new ArrayList<>();
@@ -42,14 +41,13 @@ public class ClientDto extends Dto<Client> {
             .map(c -> new ContactDto().fillByEntity(c))
             .toList()
         );
-        setId(getId());
-        setName(getName());
+        setId(entity.getId());
+        setName(entity.getName());
         getPatients().clear();
         setPatients(entity.getPatients().stream()
             .map(c -> new PatientDto().fillByEntity(c))
             .toList()
         );
-        setScheduleId(entity.getId());
 
         return this;
     }    
