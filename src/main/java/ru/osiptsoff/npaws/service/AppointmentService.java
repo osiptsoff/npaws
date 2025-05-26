@@ -21,12 +21,12 @@ public class AppointmentService extends AbstractPagingCrudService<Appointment> {
 
     @Transactional
     public PageDto<Appointment> findPageByEmployeeId(PageRequestDto dto, UUID employeeId) {
-        return findPage(dto, p -> getPsRepository().findPageByEmployeeId(p, employeeId));
+        return findPage(dto, p -> getPsRepository().findAllByEmployeeId(p, employeeId));
     }
 
     @Transactional
     public PageDto<Appointment> findPageByPatientId(PageRequestDto dto, UUID patientId) {
-        return findPage(dto, p -> getPsRepository().findPageByPatientId(p, patientId));
+        return findPage(dto, p -> getPsRepository().findAllByPatientId(p, patientId));
     }
 
     @Override

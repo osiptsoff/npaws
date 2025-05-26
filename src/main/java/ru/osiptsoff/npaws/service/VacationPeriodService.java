@@ -21,7 +21,7 @@ public class VacationPeriodService extends AbstractPagingCrudService<VacationPer
 
     @Transactional
     public PageDto<VacationPeriod> findByScheduleId(PageRequestDto dto, UUID scheduleId) {
-        return findPage(dto, p -> getPsRepository().findPageByOwningScheduleId(p, scheduleId));
+        return findPage(dto, p -> getPsRepository().findAllByOwningScheduleId(p, scheduleId));
     }
 
     @Override

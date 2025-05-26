@@ -21,7 +21,7 @@ public class IndividualWorkingDayService extends AbstractPagingCrudService<Indiv
 
     @Transactional
     public PageDto<IndividualWorkingDay> findByScheduleId(PageRequestDto dto, UUID scheduleId) {
-        return findPage(dto, p -> getPsRepository().findPageByOwningScheduleId(p, scheduleId));
+        return findPage(dto, p -> getPsRepository().findAllByOwningScheduleId(p, scheduleId));
     }
 
     @Override

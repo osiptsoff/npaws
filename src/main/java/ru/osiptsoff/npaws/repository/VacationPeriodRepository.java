@@ -4,7 +4,6 @@ import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -16,6 +15,5 @@ public interface VacationPeriodRepository extends
         CrudRepository<VacationPeriod, UUID>,
         PagingAndSortingRepository<VacationPeriod, UUID> {
     
-    @Query(value = "select v from VacationPeriod d where v.owningSchedule.id = ?2")
-    Page<VacationPeriod> findPageByOwningScheduleId(Pageable pageable, UUID id);
+    Page<VacationPeriod> findAllByOwningScheduleId(Pageable pageable, UUID id);
 }
