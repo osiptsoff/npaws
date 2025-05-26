@@ -23,4 +23,7 @@ public class Contact {
 
     @Column(name = "comment")
     private String comment;
+
+    @Column(name = "person_id")
+    private UUID ownerId;
 }

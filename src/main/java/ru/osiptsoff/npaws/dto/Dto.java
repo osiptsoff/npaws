@@ -2,7 +2,10 @@ package ru.osiptsoff.npaws.dto;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public abstract class Dto<T> {
+    @JsonIgnore
     public abstract T getEntity();
     public abstract Dto<T> fillByEntity(T entity);
     public abstract UUID getId();
