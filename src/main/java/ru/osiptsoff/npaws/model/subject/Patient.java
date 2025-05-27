@@ -27,6 +27,9 @@ public class Patient {
     @Column(name = "toxometry")
     private String toxometry;
 
+    @Column(name = "comment")
+    private String comment;
+
     @Column(name = "is_male")
     private boolean isMale;
 

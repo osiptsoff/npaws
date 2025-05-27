@@ -13,6 +13,7 @@ public class PatientDto extends Dto<Patient> {
     private UUID id;
     private String name;
     private String taxometry;
+    private String comment;
     private boolean isMale;
     private int age;
     private UUID ownerId;
@@ -27,6 +28,7 @@ public class PatientDto extends Dto<Patient> {
         patient.setMale(isMale());
         patient.setName(getName());
         patient.setToxometry(getTaxometry());
+        patient.setComment(getComment());
         if (getOwnerId() != null) {
             patient.setOwner(client);
         }
@@ -45,6 +47,7 @@ public class PatientDto extends Dto<Patient> {
             setOwnerId(entity.getOwner().getId());
         }
         setTaxometry(entity.getToxometry());
+        setComment(entity.getComment());
 
         return this;
     }    
