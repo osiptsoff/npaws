@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.RestClientException;
 
 import ru.osiptsoff.npaws.service.exception.MissingEntityException;
 
@@ -29,6 +30,12 @@ public class ControllerAdvice {
     public ResponseEntity<Map<String, Object>> handle(DataIntegrityViolationException e) {
         var strs = e.getMostSpecificCause().getMessage().split("\n");
         return getEntity(HttpStatus.BAD_REQUEST, strs[1].strip());
+    }
+
+    @ExceptionHandler({RestClientException.class})
+    public ResponseEntity<Map<String, Object>> handle(RestClientException rce) {
+        // todo OK to entity status, status from service to body
+        return getEntity(HttpStatus.BAD_REQUEST, rce.getMessage());
     }
 
     private ResponseEntity<Map<String, Object>> getEntity(HttpStatus status, String message) {

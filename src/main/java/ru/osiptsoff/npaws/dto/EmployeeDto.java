@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import io.micrometer.common.lang.Nullable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import ru.osiptsoff.npaws.model.subject.Education;
@@ -20,6 +21,8 @@ public class EmployeeDto extends Dto<Employee> {
     private String institution;
     private String education;
     private String position;
+    @Nullable
+    private SecurityUserDto securityInfo;
 
     @Override
     public Employee getEntity() {
