@@ -9,7 +9,7 @@ import ru.osiptsoff.npaws.model.subject.Patient;
 import ru.osiptsoff.npaws.service.PatientService;
 
 @RestController
-@RequestMapping("patient")
+@RequestMapping("/patient")
 @Validated
 public class PatientController extends AbstractPagedCrudController<Patient, PatientDto> {
 
