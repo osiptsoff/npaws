@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -49,8 +50,16 @@ public class SecurityConfig {
             .csrf(c -> c.disable())
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .formLogin(f -> f.disable())
-            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
-            .addFilterAfter(jwtAuthenticationFilter,
+            .authorizeHttpRequests(auth -> {
+                auth.requestMatchers("/error").permitAll();
+                auth.requestMatchers("/appointment", "/patient").hasAuthority("employee");
+                auth.requestMatchers("/schedule", "/individualWorkingDay", "/vacationPeriod", "/employee").hasAnyAuthority("director", "admin");
+                auth.requestMatchers("/**").hasAuthority("admin");
+                auth.requestMatchers(HttpMethod.POST, "/patient").hasAuthority("admin");
+                auth.requestMatchers("/client").hasAuthority("admin");
+
+                //auth.requestMatchers(HttpMethod.GET, "/**").authenticated();
+            }).addFilterAfter(jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class)
             .build();
     }
