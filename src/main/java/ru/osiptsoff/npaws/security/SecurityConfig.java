@@ -49,10 +49,7 @@ public class SecurityConfig {
             .csrf(c -> c.disable())
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .formLogin(f -> f.disable())
-            .authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/error").permitAll();
-                //todo
-            })
+            .authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
             .addFilterAfter(jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class)
             .build();
