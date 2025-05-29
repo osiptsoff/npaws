@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @Entity
-@Table(schema = "subject", name = "client_info")
+@Table(schema = "subject", name = "person_info")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class Client extends Person {
