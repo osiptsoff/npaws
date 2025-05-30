@@ -23,8 +23,8 @@ public class Client extends Person {
     @EqualsAndHashCode.Exclude
     private List<Patient> patients;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", updatable = false)
     private List<ClientContact> contacts;
 }

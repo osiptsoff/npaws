@@ -39,8 +39,8 @@ public class Employee extends Person {
     @EqualsAndHashCode.Exclude
     private Schedule schedule;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=false)
     @Fetch(FetchMode.SUBSELECT)
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", updatable = false)
     private List<EmployeeContact> contacts;
 }

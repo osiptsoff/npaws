@@ -24,6 +24,7 @@ public class ClientDto extends Dto<Client> {
             .map(c -> c.getEntity())
             .toList()
         );
+        client.getContacts().forEach(c -> c.setOwnerId(getId()));
         client.setId(getId());
         client.setName(getName());
         client.setPatients(getPatients().stream()

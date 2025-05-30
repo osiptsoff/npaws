@@ -36,6 +36,8 @@ public class EmployeeDto extends Dto<Employee> {
         if (getEducation() != null) {
             employee.setEducation(Education.valueOf(getEducation()));
         }
+        employee.getContacts().forEach(c -> c.setOwnerId(getId()));
+
         employee.setId(getId());
         employee.setInstitution(getInstitution());
         employee.setName(getName());
