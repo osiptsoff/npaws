@@ -1,6 +1,7 @@
 package ru.osiptsoff.npaws.controller;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,13 +36,18 @@ public class EmployeeController extends AbstractPagedCrudController<Employee, Em
     @PostMapping("")
     @Override
     public Dto<Employee> create(@Valid @RequestBody EmployeeDto dto) {
+        EmployeeDto edto = (EmployeeDto)super.create(dto);
+        dto.getSecurityInfo().setUuid(edto.getId());
+
         restTemplate.postForEntity(
             userCreationEndpoint,
             dto.getSecurityInfo(),
             SecurityUserDto.class
         );
 
-        return super.create(dto);
+        edto.setSecurityInfo(dto.getSecurityInfo());
+
+        return edto;
     }
     
 }

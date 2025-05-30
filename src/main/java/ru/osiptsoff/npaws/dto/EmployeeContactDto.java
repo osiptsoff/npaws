@@ -4,18 +4,18 @@ import java.util.UUID;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import ru.osiptsoff.npaws.model.subject.Contact;
+import ru.osiptsoff.npaws.model.subject.EmployeeContact;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class ContactDto extends Dto<Contact> {
+public class EmployeeContactDto extends Dto<EmployeeContact> {
     private UUID id;
     private String contactMean;
     private String comment;
 
     @Override
-    public Contact getEntity() {
-        Contact contact = new Contact();
+    public EmployeeContact getEntity() {
+        EmployeeContact contact = new EmployeeContact();
 
         contact.setComment(getComment());
         contact.setContactMean(getContactMean());
@@ -25,7 +25,7 @@ public class ContactDto extends Dto<Contact> {
     }
 
     @Override
-    public ContactDto fillByEntity(Contact entity) {
+    public EmployeeContactDto fillByEntity(EmployeeContact entity) {
         setComment(entity.getComment());
         setContactMean(entity.getContactMean());
         setId(entity.getId());

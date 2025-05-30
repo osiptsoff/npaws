@@ -6,8 +6,10 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Position {
-    ASSISTANT("ASSISTANT"),
-    DOCTOR("DOCTOR");
+    ADMIN("admin"),
+    ASSISTANT("assistant"),
+    DOCTOR("doctor"),
+    DIRECTOR("director");
 
     @Getter
     private final String name;

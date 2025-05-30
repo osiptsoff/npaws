@@ -13,7 +13,7 @@ import ru.osiptsoff.npaws.model.subject.Client;
 public class ClientDto extends Dto<Client> {
     private UUID id;
     private String name;
-    private List<ContactDto> contacts = new ArrayList<>();
+    private List<ClientContactDto> contacts = new ArrayList<>();
     private List<PatientDto> patients = new ArrayList<>();
     
     @Override
@@ -38,7 +38,7 @@ public class ClientDto extends Dto<Client> {
     public ClientDto fillByEntity(Client entity) {
         getContacts().clear();
         getContacts().addAll(entity.getContacts().stream()
-            .map(c -> new ContactDto().fillByEntity(c))
+            .map(c -> new ClientContactDto().fillByEntity(c))
             .toList()
         );
         setId(entity.getId());

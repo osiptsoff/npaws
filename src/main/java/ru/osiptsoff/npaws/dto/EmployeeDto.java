@@ -15,10 +15,11 @@ import ru.osiptsoff.npaws.model.subject.Position;
 @EqualsAndHashCode(callSuper = false)
 public class EmployeeDto extends Dto<Employee> {
     private UUID id;
-    private UUID scheduleId;
     private String name;
-    private List<ContactDto> contacts = new ArrayList<>();
+    private List<EmployeeContactDto> contacts = new ArrayList<>();
+    @Nullable
     private String institution;
+    @Nullable
     private String education;
     private String position;
     @Nullable
@@ -32,7 +33,9 @@ public class EmployeeDto extends Dto<Employee> {
             .map(c -> c.getEntity())
             .toList()
         );
-        employee.setEducation(Education.valueOf(getEducation()));
+        if (getEducation() != null) {
+            employee.setEducation(Education.valueOf(getEducation()));
+        }
         employee.setId(getId());
         employee.setInstitution(getInstitution());
         employee.setName(getName());
@@ -45,12 +48,13 @@ public class EmployeeDto extends Dto<Employee> {
     public EmployeeDto fillByEntity(Employee entity) {
         getContacts().clear();
         getContacts().addAll(entity.getContacts().stream()
-            .map(c -> new ContactDto().fillByEntity(c))
+            .map(c -> new EmployeeContactDto().fillByEntity(c))
             .toList()
         );
-        setEducation(entity.getEducation().getName());
+        if (entity.getEducation() != null) {
+            setEducation(entity.getEducation().getName());
+        }
         setId(entity.getId());
-        setScheduleId(entity.getId());
         setInstitution(entity.getInstitution());
         setName(entity.getName());
         setPosition(entity.getPosition().getName());

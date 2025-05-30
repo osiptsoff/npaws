@@ -3,14 +3,12 @@ package ru.osiptsoff.npaws.model.subject;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
-@Table(schema = "subject", name = "contact")
+@MappedSuperclass
 @Data
 public class Contact {
     @Column(name = "id")

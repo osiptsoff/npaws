@@ -28,7 +28,7 @@ public class Schedule {
     private UUID id;
 
     @OneToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "employee_id")
     @EqualsAndHashCode.Include
     private Employee employee;
 
