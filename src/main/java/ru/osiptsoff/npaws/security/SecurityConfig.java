@@ -51,15 +51,7 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .formLogin(f -> f.disable())
             .authorizeHttpRequests(auth -> {
-                auth.requestMatchers(HttpMethod.GET, "/**").authenticated();
-                auth.requestMatchers("/error").permitAll();
-
-                auth.requestMatchers("/appointment", "/patient").hasAuthority("employee");
-                auth.requestMatchers("/schedule", "/individualWorkingDay", "/vacationPeriod", "/employee").hasAnyAuthority("director", "admin");
-                auth.requestMatchers(HttpMethod.POST, "/patient").hasAuthority("admin");
-                auth.requestMatchers("/client").hasAuthority("admin");
-
-                // auth.requestMatchers("/**").hasAuthority("admin");
+                auth.anyRequest().permitAll();
             }).addFilterAfter(jwtAuthenticationFilter,
                 UsernamePasswordAuthenticationFilter.class)
             .build();
